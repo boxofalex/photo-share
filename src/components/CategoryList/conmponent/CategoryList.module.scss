@@ -1,0 +1,32 @@
+@import "../../../styles/shared/flex";
+@import "../../../styles/shared/colours";
+
+.container {
+  @include horizontalCentered();
+  margin: 2rem 4rem 2rem 4rem;
+}
+
+.category {
+  & button {
+    margin: 0;
+    font-size: 1.125rem;
+    font-weight: 500;
+    border: 0;
+    cursor: pointer;
+    outline: none;
+    padding: 0;
+  }
+}
+
+.divider {
+  margin: 0 10px 0 10px;
+  font-size: 1.125rem;
+  font-weight: 500;
+}
+
+.categoryActive {
+  & button {
+    color: $lightViolet;
+    border-bottom: 2px solid $lightViolet;
+  }
+}

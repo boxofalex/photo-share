@@ -1,0 +1,19 @@
+@import 'Styles/shared/index.scss';
+
+.header {
+    margin: 0;
+
+    &__content {
+        @include horizontalCentered(space-between);
+        width: 80%;
+        margin: 0 auto;
+
+        &__left {
+            @include horizontalCentered();
+        }
+
+        &__right {
+            @include horizontalCentered(flex-end)
+        }
+    }
+}

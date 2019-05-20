@@ -1,10 +1,7 @@
-import 'react-hot-loader'
-import React from 'react';
-import ReactDOM from 'react-dom';
-import App from './App';
-import 'Styles/styles.scss';
+import "react-hot-loader";
+import React from "react";
+import ReactDOM from "react-dom";
+import { App } from "./components/App";
+import "styles/styles.scss";
 
-ReactDOM.render(
-  <App/>,
-  document.getElementById('root')
-);
+ReactDOM.render(<App />, document.getElementById("root"));

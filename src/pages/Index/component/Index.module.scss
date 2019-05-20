@@ -1,0 +1,29 @@
+@import "../../../styles/shared/colours";
+@import "../../../styles/shared/flex";
+
+.container {
+  height: 70vh;
+}
+
+.insideBanner {
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.searchForm {
+  margin: 20px 0 0 0;
+  @include horizontalStretched();
+  &__input {
+    width: 450px;
+    padding: 0 0 0 10px;
+    border-radius: 5px 0 0 5px;
+    border: 0;
+    height: 40px;
+    outline: none;
+    font-size: 1.5rem;
+    font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+    color: $mainGrey;
+  }
+}

@@ -1,19 +1,23 @@
-@import 'Styles/shared/index.scss';
+@import "Styles/shared/index.scss";
 
 .header {
-    margin: 0;
+  margin: 0;
 
-    &__content {
-        @include horizontalCentered(space-between);
-        width: 80%;
-        margin: 0 auto;
+  &__content {
+    @include horizontalCentered(space-between);
+    width: 80%;
+    margin: 0 auto;
 
-        &__left {
-            @include horizontalCentered();
-        }
-
-        &__right {
-            @include horizontalCentered(flex-end)
-        }
+    &__left {
+      @include horizontalCentered();
     }
+
+    &__right {
+      @include horizontalCentered(flex-end);
+    }
+  }
+}
+
+.myAccountButton {
+  margin: 0 10px 0 0 !important;
 }

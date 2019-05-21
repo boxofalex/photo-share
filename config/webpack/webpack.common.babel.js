@@ -15,6 +15,7 @@ module.exports = {
       api: paths.apiPath,
       material: paths.materialUIPath,
       assets: paths.assetsPath,
+      config: paths.configPath,
     },
     modules: ["src", "node_modules"],
     extensions: ["*", ".js", ".scss", "jpg", "jpeg"],

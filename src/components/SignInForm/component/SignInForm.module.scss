@@ -1,0 +1,26 @@
+@import "../../../styles/shared/colours";
+@import "../../../styles/shared/flex";
+
+.container {
+}
+
+.signinForm {
+  &__login {
+  }
+
+  &__password {
+  }
+
+  &__register {
+    & button {
+      border: none;
+      padding: 0;
+      font-size: 16px;
+      font-weight: 500;
+      color: $mainViolet;
+      border-bottom: 2px solid $mainViolet;
+      cursor: pointer;
+      outline: none;
+    }
+  }
+}

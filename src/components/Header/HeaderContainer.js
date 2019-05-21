@@ -19,8 +19,7 @@ const stylesForMI = {
 
 class HeaderContainer extends Component {
   render() {
-    const { classes } = this.props;
-    return <Header classes={classes} />;
+    return <Header {...this.props} />;
   }
 }
 

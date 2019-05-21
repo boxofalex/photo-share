@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Fragment } from "react";
 import PropTypes from "prop-types";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
@@ -8,7 +8,7 @@ import Button from "@material-ui/core/Button";
 
 import styles from "./Header.module.scss";
 
-const Header = ({ classes }) => {
+const Header = ({ classes, isUserAuthorised, toggleSignForm, openAddPhotoForm }) => {
   return (
     <div className={styles.header}>
       <AppBar position="static">
@@ -21,12 +21,32 @@ const Header = ({ classes }) => {
               <CameraIcon className={classes.rootForIconLogo} color="secondary" />
             </div>
             <div className={styles.header__content__right}>
-              <Button className={classes.accountButton} disableRipple={true}>
-                Войти
-              </Button>
-              <Button variant="contained" color="secondary" disableRipple={true}>
-                Добавить Фото
-              </Button>
+              {isUserAuthorised ? (
+                <Fragment>
+                  <Button
+                    className={styles.myAccountButton}
+                    variant="contained"
+                    color="secondary"
+                    disableRipple={true}>
+                    Мой аккаунт
+                  </Button>
+                  <Button
+                    className={styles.addPhotoButton}
+                    variant="contained"
+                    color="secondary"
+                    disableRipple={true}
+                    onClick={openAddPhotoForm}>
+                    Добавить Фото
+                  </Button>
+                </Fragment>
+              ) : (
+                <Button
+                  className={classes.accountButton}
+                  disableRipple={true}
+                  onClick={toggleSignForm}>
+                  Войти
+                </Button>
+              )}
             </div>
           </div>
         </Toolbar>

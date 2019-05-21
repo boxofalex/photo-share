@@ -5,12 +5,13 @@ import Typography from "@material-ui/core/Typography";
 import { SearchForm } from "components/SearchForm";
 import { PhotoGrid } from "components/PhotoGrid";
 import { CategoryList } from "components/CategoryList";
+import { AddCategoryForm } from "components/AddCategoryForm";
+import { AddPhotoForm } from "components/AddPhotoForm";
+import Button from "@material-ui/core/Button";
 import banner from "assets/images/banner.jpg";
 
 import styles from "./Index.module.scss";
 
-const categoryNames = ["Новые", "Природа", "Автомобили"];
-const activeCategory = "Все";
 const bannerConfig = {
   backgroundImage: `url(${banner})`,
   backgroundPosition: "top 50% center",
@@ -26,19 +27,24 @@ const images = [
 ];
 
 class Index extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      activeCategory,
-    };
+  componentDidMount() {
+    const { fetchCategories } = this.props;
+    fetchCategories();
   }
 
-  changeActiveCategory = name => {
-    this.setState({ activeCategory: name });
-  };
-
   render() {
-    const { muiClassesForButton } = this.props;
+    const {
+      muiClassesForButton,
+      listOfCategories,
+      activeCategory,
+      ui,
+      openAddCategoryForm,
+      closeAddCategoryForm,
+      addCategory,
+      fetchCategory,
+      closeAddImageForm,
+      uploadPhoto,
+    } = this.props;
 
     return (
       <div className={styles.container}>
@@ -55,11 +61,31 @@ class Index extends Component {
           </div>
         </Banner>
         <CategoryList
-          items={[activeCategory, ...categoryNames]}
-          activeCategory={this.state.activeCategory}
-          changeActiveCategory={this.changeActiveCategory}
+          items={[{ _id: 0, name: "Все" }, ...listOfCategories]}
+          activeCategory={activeCategory && activeCategory.name}
+          changeActiveCategory={fetchCategory}
         />
+        <div className={styles.addCategory}>
+          <Button
+            type="button"
+            variant="contained"
+            color="secondary"
+            disableRipple={true}
+            onClick={openAddCategoryForm}>
+            Добавить категорию
+          </Button>
+        </div>
         <PhotoGrid images={images} />
+        <AddCategoryForm
+          isOpen={ui && ui.isAddCategoryFormOpen}
+          closeForm={closeAddCategoryForm}
+          addCategory={addCategory}
+        />
+        <AddPhotoForm
+          isOpen={ui.isAddImageFormOpen}
+          closeForm={closeAddImageForm}
+          uploadPhoto={uploadPhoto}
+        />
       </div>
     );
   }

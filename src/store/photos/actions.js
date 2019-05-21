@@ -72,20 +72,11 @@ const uploadPhoto = (name, category, location, image) => async (dispatch, getSta
   try {
     const data = new FormData();
     data.append("file", image);
-    const response = await api.post(
-      `/photos`,
-      {
-        name,
-        category,
-        location,
-        author: state.user.activeUserId,
-      },
-      {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-      },
-    );
+    data.append("name", name);
+    data.append("category", category);
+    data.append("location", location);
+    data.append("author", state.user.activeUserId);
+    const response = await api.post(`/photos`, data);
   } catch (err) {
     console.log(err);
     dispatch({ type: UPLOAD_PHOTO_FAIL });

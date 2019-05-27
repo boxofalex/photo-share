@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 
 import styles from "./ImageItem.module.scss";
 
@@ -21,10 +22,12 @@ class ImageItem extends Component {
   };
 
   render() {
-    const { url } = this.props.image;
+    const { url, _id, name } = this.props.image;
     return (
       <div style={{ gridRowEnd: `span ${this.state.spans}` }}>
-        <img ref={this.imageRef} src={url} />
+        <Link to={`/photo/${_id}`}>
+          <img ref={this.imageRef} src={url} alt={name} />
+        </Link>
       </div>
     );
   }

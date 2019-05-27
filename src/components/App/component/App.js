@@ -35,24 +35,24 @@ class App extends Component {
     } = this.props;
     return (
       <MuiThemeProvider theme={theme}>
-        <Header
-          isUserAuthorised={user && user.activeUserId}
-          logInUser={this.logInUser}
-          toggleSignForm={openSignInForm}
-          openAddPhotoForm={openAddImageForm}
-        />
-        <div className={styles.mainContent}>
-          <BrowserRouter>
+        <BrowserRouter>
+          <Header
+            isUserAuthorised={user && user.activeUserId}
+            logInUser={this.logInUser}
+            toggleSignForm={openSignInForm}
+            openAddPhotoForm={openAddImageForm}
+          />
+          <div className={styles.mainContent}>
             <Switch>
               <Route path="/" exact component={Index} />
-              <Route path="/image/:id" component={Image} />
+              <Route path="/photo/:id" component={Image} />
               <Route path="/search" component={Search} />
               <Route path="/admin" component={Admin} />
               <Route path="/404" component={NotFound} />
               <Redirect from="*" to="/404" />
             </Switch>
-          </BrowserRouter>
-        </div>
+          </div>
+        </BrowserRouter>
         <SignInForm
           isOpen={ui.isSignInFormOpen}
           toggleSignForm={closeSignInForm}

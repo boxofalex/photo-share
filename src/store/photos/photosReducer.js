@@ -11,14 +11,16 @@ import {
   FETCH_ALL_PHOTOS,
   FETCH_ALL_PHOTOS_SUCCESSFULL,
   FETCH_ALL_PHOTOS_FAIL,
+  SELECT_PHOTO,
+  SELECT_PHOTO_SUCCESSFULL,
+  SELECT_PHOTO_FAIL,
 } from "./constants";
 
 const initState = {
-  activeCategory: {
-    name: "Все",
-  },
+  activeCategory: null,
   listOfAvailableCategories: [],
   photos: [],
+  activePhoto: null,
 };
 
 const photosReducerMap = {
@@ -64,6 +66,15 @@ const photosReducerMap = {
   },
   [FETCH_ALL_PHOTOS_FAIL]: (state, action) => {
     return { ...state, activeCategory: {}, photos: [] };
+  },
+  [SELECT_PHOTO]: (state, action) => {
+    return state;
+  },
+  [SELECT_PHOTO_SUCCESSFULL]: (state, action) => {
+    return { ...state, activePhoto: action.payload };
+  },
+  [SELECT_PHOTO_FAIL]: (state, action) => {
+    return state;
   },
 };
 

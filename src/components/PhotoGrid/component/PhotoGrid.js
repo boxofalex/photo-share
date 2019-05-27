@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { ImageItem } from "components/ImageItem";
+import { Link } from "react-router-dom";
 
 import styles from "./PhotoGrid.module.scss";
 
@@ -9,7 +10,7 @@ const PhotoGrid = ({ images }) => {
     <div className={styles.image_list}>
       {images &&
         images.map(image => {
-          return <ImageItem key={image.id} image={image} />;
+          return <ImageItem key={image._id} image={image} />;
         })}
     </div>
   );

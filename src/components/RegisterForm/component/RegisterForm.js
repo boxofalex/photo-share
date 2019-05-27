@@ -63,13 +63,13 @@ class RegisterForm extends Component {
               </div>
             </DialogContent>
             <DialogActions>
-              <Button type="submit" variant="contained" color="secondary" disableRipple={true}>
+              <Button type="submit" variant="contained" color="secondary" disableRipple>
                 Подтвредить
               </Button>
               <Button
                 variant="contained"
                 color="secondary"
-                disableRipple={true}
+                disableRipple
                 onClick={toggleRegisterForm}>
                 Отмена
               </Button>

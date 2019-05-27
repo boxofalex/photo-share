@@ -1,0 +1,27 @@
+@import "../../../styles/shared/colours";
+@import "../../../styles/shared/flex";
+
+.container {
+  width: 50%;
+  margin: 0 auto;
+}
+
+.title {
+  text-align: start;
+  margin: 20px 0 20px 0;
+}
+
+.rating_author {
+  text-align: start;
+  margin: 20px 0 20px 0;
+  @include horizontalCentered(space-between);
+}
+
+.image {
+  text-align: start;
+  margin: 20px 0 100px 0;
+
+  & img {
+    max-height: 100%;
+  }
+}

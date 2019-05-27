@@ -5,6 +5,7 @@ import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 import CameraIcon from "@material-ui/icons/Camera";
 import Button from "@material-ui/core/Button";
+import { Link } from "react-router-dom";
 
 import styles from "./Header.module.scss";
 
@@ -14,12 +15,14 @@ const Header = ({ classes, isUserAuthorised, toggleSignForm, openAddPhotoForm })
       <AppBar position="static">
         <Toolbar classes={{ root: classes.rootForToolbar }}>
           <div className={styles.header__content}>
-            <div className={styles.header__content__left}>
-              <Typography component="h2" variant="h2">
-                PhotoShare
-              </Typography>
-              <CameraIcon className={classes.rootForIconLogo} color="secondary" />
-            </div>
+            <Link to={"/"}>
+              <div className={styles.header__content__left}>
+                <Typography component="h2" variant="h2">
+                  PhotoShare
+                </Typography>
+                <CameraIcon className={classes.rootForIconLogo} color="secondary" />
+              </div>
+            </Link>
             <div className={styles.header__content__right}>
               {isUserAuthorised ? (
                 <Fragment>

@@ -17,19 +17,12 @@ const bannerConfig = {
   backgroundPosition: "top 50% center",
   backgroundRepeat: "no-repeat",
 };
-const images = [
-  { url: "/1.jpg", id: 1 },
-  { url: "/2.jpg", id: 2 },
-  { url: "/3.jpg", id: 3 },
-  { url: "/4.jpg", id: 4 },
-  { url: "/5.jpg", id: 5 },
-  { url: "/6.jpg", id: 6 },
-];
 
 class Index extends Component {
   componentDidMount() {
-    const { fetchCategories } = this.props;
+    const { fetchCategories, fetchCategory } = this.props;
     fetchCategories();
+    fetchCategory(0);
   }
 
   render() {
@@ -38,6 +31,7 @@ class Index extends Component {
       listOfCategories,
       activeCategory,
       ui,
+      photos,
       openAddCategoryForm,
       closeAddCategoryForm,
       addCategory,
@@ -70,12 +64,12 @@ class Index extends Component {
             type="button"
             variant="contained"
             color="secondary"
-            disableRipple={true}
+            disableRipple
             onClick={openAddCategoryForm}>
             Добавить категорию
           </Button>
         </div>
-        <PhotoGrid images={images} />
+        <PhotoGrid images={photos} />
         <AddCategoryForm
           isOpen={ui && ui.isAddCategoryFormOpen}
           closeForm={closeAddCategoryForm}

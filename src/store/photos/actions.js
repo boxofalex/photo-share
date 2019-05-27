@@ -14,6 +14,9 @@ import {
   UPLOAD_PHOTO,
   UPLOAD_PHOTO_SUCCESSFULL,
   UPLOAD_PHOTO_FAIL,
+  SELECT_PHOTO,
+  SELECT_PHOTO_SUCCESSFULL,
+  SELECT_PHOTO_FAIL,
 } from "./constants";
 import FormData from "form-data";
 
@@ -71,16 +74,35 @@ const uploadPhoto = (name, category, location, image) => async (dispatch, getSta
   dispatch({ type: UPLOAD_PHOTO });
   try {
     const data = new FormData();
-    data.append("file", image);
+    data.append("image", image);
     data.append("name", name);
     data.append("category", category);
     data.append("location", location);
     data.append("author", state.user.activeUserId);
     const response = await api.post(`/photos`, data);
+    if (response.status === 200) {
+      dispatch(uiActions.closeAddImageForm());
+      dispatch({ type: UPLOAD_PHOTO_SUCCESSFULL });
+      dispatch(fetchCategory(state.photos.activeCategory._id));
+    }
   } catch (err) {
-    console.log(err);
     dispatch({ type: UPLOAD_PHOTO_FAIL });
   }
 };
 
-export { fetchCategories, addCategory, fetchCategory, fetchAllPhotos, uploadPhoto };
+const selectPhoto = id => async (dispatch, getState, api) => {
+  dispatch({ type: SELECT_PHOTO });
+  try {
+    const response = await api.get(`/photos`).then(res => res.data.data);
+    const activePhoto = response.photos.filter(item => {
+      return item._id === id;
+    });
+    if (activePhoto[0]) {
+      dispatch({ type: SELECT_PHOTO_SUCCESSFULL, payload: activePhoto[0] });
+    }
+  } catch (err) {
+    dispatch({ type: SELECT_PHOTO_FAIL });
+  }
+};
+
+export { fetchCategories, addCategory, fetchCategory, fetchAllPhotos, uploadPhoto, selectPhoto };

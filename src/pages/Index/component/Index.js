@@ -25,6 +25,11 @@ class Index extends Component {
     fetchCategory(0);
   }
 
+  handleSearch = term => {
+    const { history } = this.props;
+    history.push(`/search?term=${term}`);
+  };
+
   render() {
     const {
       muiClassesForButton,
@@ -51,6 +56,7 @@ class Index extends Component {
               formStyle={styles.searchForm}
               inputStyle={styles.searchForm__input}
               muiClassesForButton={muiClassesForButton}
+              onClickAction={this.handleSearch}
             />
           </div>
         </Banner>
@@ -74,11 +80,6 @@ class Index extends Component {
           isOpen={ui && ui.isAddCategoryFormOpen}
           closeForm={closeAddCategoryForm}
           addCategory={addCategory}
-        />
-        <AddPhotoForm
-          isOpen={ui.isAddImageFormOpen}
-          closeForm={closeAddImageForm}
-          uploadPhoto={uploadPhoto}
         />
       </div>
     );

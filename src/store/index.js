@@ -4,6 +4,7 @@ import thunk from "redux-thunk";
 import { userReducer } from "./user";
 import { uiReducer } from "./ui";
 import { photosReducer } from "./photos";
+import { searchReducer } from "./search";
 
 const middleware = applyMiddleware(thunk.withExtraArgument(api));
 
@@ -13,6 +14,7 @@ const reducer = combineReducers({
   user: userReducer,
   ui: uiReducer,
   photos: photosReducer,
+  search: searchReducer,
 });
 
 const store = createStore(

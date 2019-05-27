@@ -11,11 +11,14 @@ import {
   FETCH_USERS,
   FETCH_USERS_SUCCESSFULL,
   FETCH_USERS_FAIL,
+  LOGOUT_USER,
 } from "./constants";
 
 const initState = {
   activeUserId: null,
   activeUserDetails: {},
+  listOfUsers: [],
+  selectedUser: null,
 };
 
 const userReducerMap = {
@@ -41,19 +44,22 @@ const userReducerMap = {
     return state;
   },
   [FETCH_USER_SUCCESSFULL]: (state, action) => {
-    return state;
+    return { ...state, selectedUser: action.payload };
   },
   [FETCH_USER_FAIL]: (state, action) => {
-    return state;
+    return { ...state, selectedUser: null };
   },
   [FETCH_USERS]: (state, action) => {
-    return state;
+    return { ...state, selectedUser: null };
   },
   [FETCH_USERS_SUCCESSFULL]: (state, action) => {
-    return state;
+    return { ...state, listOfUsers: action.payload };
   },
   [FETCH_USERS_FAIL]: (state, action) => {
-    return state;
+    return { ...state, listOfUsers: [] };
+  },
+  [LOGOUT_USER]: (state, action) => {
+    return { ...state, activeUserId: null, activeUserDetails: {} };
   },
 };
 

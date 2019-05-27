@@ -11,6 +11,7 @@ import { Image } from "pages/Image";
 import { Admin } from "pages/Admin";
 import { Search } from "pages/Search";
 import { NotFound } from "pages/NotFound";
+import { AddPhotoForm } from "components/AddPhotoForm";
 
 class App extends Component {
   logInUser = (login, password) => {
@@ -23,6 +24,11 @@ class App extends Component {
     registerUser(login, password);
   };
 
+  logOutUser = () => {
+    const { logoutUser } = this.props;
+    logoutUser();
+  };
+
   render() {
     const {
       user,
@@ -32,7 +38,12 @@ class App extends Component {
       openRegisterForm,
       closeRegisterForm,
       openAddImageForm,
+      closeAddImageForm,
+      uploadPhoto,
+      closeAddCategoryForm,
+      addCategory,
     } = this.props;
+
     return (
       <MuiThemeProvider theme={theme}>
         <BrowserRouter>
@@ -41,6 +52,7 @@ class App extends Component {
             logInUser={this.logInUser}
             toggleSignForm={openSignInForm}
             openAddPhotoForm={openAddImageForm}
+            logOutUser={this.logOutUser}
           />
           <div className={styles.mainContent}>
             <Switch>
@@ -63,6 +75,11 @@ class App extends Component {
           isOpen={ui.isRegisterFormOpen}
           toggleRegisterForm={closeRegisterForm}
           registerUser={this.registerUser}
+        />
+        <AddPhotoForm
+          isOpen={ui.isAddImageFormOpen}
+          closeForm={closeAddImageForm}
+          uploadPhoto={uploadPhoto}
         />
       </MuiThemeProvider>
     );

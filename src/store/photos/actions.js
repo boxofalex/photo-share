@@ -17,6 +17,9 @@ import {
   SELECT_PHOTO,
   SELECT_PHOTO_SUCCESSFULL,
   SELECT_PHOTO_FAIL,
+  UPDATE_PHOTO_RATING,
+  UPDATE_PHOTO_RATING_SUCCESSFULL,
+  UPDATE_PHOTO_RATING_FAIL,
 } from "./constants";
 import FormData from "form-data";
 
@@ -105,4 +108,25 @@ const selectPhoto = id => async (dispatch, getState, api) => {
   }
 };
 
-export { fetchCategories, addCategory, fetchCategory, fetchAllPhotos, uploadPhoto, selectPhoto };
+const updatePhotoRating = (value, photoId) => async (dispatch, getState, api) => {
+  dispatch({ type: UPDATE_PHOTO_RATING });
+  try {
+    const response = await api.post(`/photos/update/${photoId}`, { updateValue: value });
+    if (response.status === 200) {
+      dispatch({ type: UPDATE_PHOTO_RATING_SUCCESSFULL });
+      dispatch(selectPhoto(photoId));
+    }
+  } catch (err) {
+    dispatch({ type: UPDATE_PHOTO_RATING_FAIL });
+  }
+};
+
+export {
+  fetchCategories,
+  addCategory,
+  fetchCategory,
+  fetchAllPhotos,
+  uploadPhoto,
+  selectPhoto,
+  updatePhotoRating,
+};

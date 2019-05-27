@@ -5,6 +5,8 @@ import Dialog from "@material-ui/core/Dialog";
 import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogTitle from "@material-ui/core/DialogTitle";
+import NativeSelect from "@material-ui/core/NativeSelect";
+import Input from "@material-ui/core/Input";
 
 import styles from "./AddPhotoForm.module.scss";
 
@@ -21,7 +23,8 @@ class AddPhotoForm extends Component {
   };
 
   handleCategory = event => {
-    this.setState({ category: event.target.value });
+    console.log(event.target.value);
+    // this.setState({ category: event.target.value });
   };
 
   handleImage = event => {
@@ -58,14 +61,15 @@ class AddPhotoForm extends Component {
               </div>
               <div className={styles.signinForm__password}>
                 <span>Категория</span>
-                <TextField
-                  id="category"
-                  name="category"
-                  type="text"
-                  margin="normal"
-                  fullWidth
+                <NativeSelect
+                  value={this.state.category}
                   onChange={this.handleCategory}
-                />
+                  input={<Input name="category" />}>
+                  <option value="" />
+                  <option value={10}>Ten</option>
+                  <option value={20}>Twenty</option>
+                  <option value={30}>Thirty</option>
+                </NativeSelect>
               </div>
               <div>
                 <input type="file" name="file" onChange={this.handleImage} />

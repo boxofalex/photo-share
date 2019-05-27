@@ -1,0 +1,29 @@
+@import "../../../styles/shared/colours";
+@import "../../../styles/shared/flex";
+
+.searchForm {
+  margin: 20px 0 0 0;
+  @include horizontalStretched();
+  &__input {
+    width: 90%;
+    padding: 0 0 0 10px;
+    border-radius: 5px 0 0 5px;
+    border: 2px solid $mainViolet;
+    height: 40px;
+    outline: none;
+    font-size: 1.5rem;
+    font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+    color: $mainGrey;
+  }
+}
+
+.searchBox {
+  text-align: center;
+  width: 50%;
+  margin: 40px auto 60px;
+}
+
+.resultBox {
+  margin: 0 0 40px 0;
+  text-align: center;
+}

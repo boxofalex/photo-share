@@ -9,7 +9,7 @@ import { Link } from "react-router-dom";
 
 import styles from "./Header.module.scss";
 
-const Header = ({ classes, isUserAuthorised, toggleSignForm, openAddPhotoForm }) => {
+const Header = ({ classes, isUserAuthorised, toggleSignForm, openAddPhotoForm, logOutUser }) => {
   return (
     <div className={styles.header}>
       <AppBar position="static">
@@ -26,27 +26,34 @@ const Header = ({ classes, isUserAuthorised, toggleSignForm, openAddPhotoForm })
             <div className={styles.header__content__right}>
               {isUserAuthorised ? (
                 <Fragment>
+                  <Link to={"/admin"}>
+                    <Button
+                      className={styles.myAccountButton}
+                      variant="contained"
+                      color="secondary"
+                      disableRipple>
+                      Пользователи
+                    </Button>
+                  </Link>
                   <Button
-                    className={styles.myAccountButton}
+                    className={styles.addPhotoButton}
                     variant="contained"
                     color="secondary"
-                    disableRipple={true}>
-                    Мой аккаунт
+                    disableRipple
+                    onClick={openAddPhotoForm}>
+                    Добавить Фото
                   </Button>
                   <Button
                     className={styles.addPhotoButton}
                     variant="contained"
                     color="secondary"
-                    disableRipple={true}
-                    onClick={openAddPhotoForm}>
-                    Добавить Фото
+                    disableRipple
+                    onClick={logOutUser}>
+                    Выйти
                   </Button>
                 </Fragment>
               ) : (
-                <Button
-                  className={classes.accountButton}
-                  disableRipple={true}
-                  onClick={toggleSignForm}>
+                <Button className={classes.accountButton} disableRipple onClick={toggleSignForm}>
                   Войти
                 </Button>
               )}

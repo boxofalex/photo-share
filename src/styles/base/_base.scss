@@ -1,50 +1,64 @@
 html {
-
-    font-size: 16px;
-    line-height: 1.6;  
+  font-size: 16px;
+  line-height: 1.6;
 }
 
 body {
+  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+  margin: 0;
+  box-sizing: border-box;
+  color: $mainGrey;
 
-    font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+  h1,
+  h2,
+  h3,
+  h4,
+  p,
+  div,
+  ul,
+  ol,
+  li,
+  article,
+  aside,
+  footer,
+  header,
+  menu,
+  nav,
+  section {
     margin: 0;
-    color: $mainGrey;
+    padding: 0;
+    border: 0;
+  }
 
-    h1, h2, h3, h4, p, div, ul, ol, li, article, aside, footer, header, menu, nav, section {
-        margin: 0;
-        padding: 0;
-	    border: 0;
-    }
-
-    &.no-scroll {
-        overflow-y: hidden;
-    }
+  &.no-scroll {
+    overflow-y: hidden;
+  }
 }
 
-ol, ul {
-
-	list-style: none;
+ol,
+ul {
+  list-style: none;
 }
 
-article, aside, footer, header, menu, nav, section {
-
-	display: block;
+article,
+aside,
+footer,
+header,
+menu,
+nav,
+section {
+  display: block;
 }
 
 * {
-
-    box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 img {
-
-    max-width: 100%;
-    height: auto;
+  max-width: 100%;
+  height: auto;
 }
 
 a {
-
-   text-decoration: none;
+  text-decoration: none;
 }
-
-  

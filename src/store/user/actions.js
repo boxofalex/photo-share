@@ -11,6 +11,7 @@ import {
   FETCH_USERS,
   FETCH_USERS_SUCCESSFULL,
   FETCH_USERS_FAIL,
+  LOGOUT_USER,
 } from "./constants";
 
 import { uiConstants } from "store/ui";
@@ -38,8 +39,32 @@ const registerUser = (login, password) => async (dispatch, getState, api) => {
   }
 };
 
-const fetchUser = userId => async (dispatch, getState, api) => {};
+const logoutUser = () => async (dispatch, getState, api) => {
+  dispatch({ type: LOGOUT_USER });
+};
 
-const fetchUsers = () => async (dispatch, getState, api) => {};
+const fetchUser = userId => async (dispatch, getState, api) => {
+  dispatch({ type: FETCH_USER });
+  try {
+    const response = await api.get(`/user/${userId}`);
+    if (response.status === 200) {
+      dispatch({ type: FETCH_USER_SUCCESSFULL, payload: response.data.data.user });
+    }
+  } catch (err) {
+    dispatch({ type: FETCH_USER_FAIL });
+  }
+};
 
-export { loginUser, registerUser, fetchUser, fetchUsers };
+const fetchUsers = () => async (dispatch, getState, api) => {
+  dispatch({ type: FETCH_USERS });
+  try {
+    const response = await api.get(`/user`);
+    if (response.status === 200) {
+      dispatch({ type: FETCH_USERS_SUCCESSFULL, payload: response.data.data.users });
+    }
+  } catch (err) {
+    dispatch({ type: FETCH_USERS_FAIL });
+  }
+};
+
+export { loginUser, registerUser, fetchUser, fetchUsers, logoutUser };

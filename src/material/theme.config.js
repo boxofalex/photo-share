@@ -13,6 +13,7 @@ const theme = createMuiTheme({
     text: {
       primary: "#3F4045",
       secondary: "#ffffff",
+      third: "#413F54",
     },
   },
   typography: {
@@ -32,7 +33,12 @@ const theme = createMuiTheme({
       },
       h3: {
         fontSize: "1.125rem",
-        fontWeight: 300,
+        fontWeight: 500,
+        letterSpacing: "normal",
+      },
+      h4: {
+        fontSize: "1rem",
+        fontWeight: 500,
         letterSpacing: "normal",
       },
       body1: {

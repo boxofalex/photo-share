@@ -16,9 +16,12 @@ class ImageItem extends Component {
   }
 
   setSpans = () => {
-    const height = this.imageRef.current.clientHeight;
-    const spans = Math.ceil(height / 10) + 1;
-    this.setState({ spans });
+    if (this.imageRef.current) {
+      const height = this.imageRef.current.clientHeight;
+      const spans = Math.ceil(height / 10) + 1;
+      this.setState({ spans });
+    }
+    return;
   };
 
   render() {

@@ -6,9 +6,10 @@
   margin: 0 auto;
 }
 
-.title {
+.title_like {
   text-align: start;
   margin: 20px 0 20px 0;
+  @include horizontalCentered(space-between);
 }
 
 .rating_author {

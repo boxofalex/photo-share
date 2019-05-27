@@ -1,0 +1,66 @@
+@import "../../../styles/shared/colours";
+@import "../../../styles/shared/flex";
+
+.list_active {
+  margin: 40px auto 40px;
+  @include flexContainer(row nowrap, space-between, flex-start);
+  width: 80%;
+}
+
+.listOfUsers {
+  width: 50%;
+  &_list {
+    margin: 20px 0 0 0;
+  }
+
+  & h2 {
+    color: $lightViolet !important;
+  }
+}
+
+.user {
+  display: block !important;
+  padding: 0 !important;
+  margin: 0 0 10px 0 !important;
+  padding: 5px !important;
+}
+
+.selectedUser {
+  width: 50%;
+  & h2 {
+    margin: 0 0 40px 0;
+    color: $lightViolet !important;
+  }
+
+  &_login {
+    margin: 0 0 40px 0;
+
+    & h3 {
+      & span {
+        color: $lightViolet !important;
+      }
+    }
+  }
+
+  &_activity {
+    margin: 0 0 40px 0;
+    & h3 {
+      margin: 0 0 20px 0;
+      color: $lightViolet !important;
+    }
+  }
+
+  &_images {
+    margin: 0 0 40px 0;
+    color: $mainGrey !important;
+
+    & h3 {
+      margin: 0 0 20px 0;
+      color: $lightViolet !important;
+    }
+
+    & li {
+      margin: 0 0 10px 0;
+    }
+  }
+}

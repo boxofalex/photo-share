@@ -1,3 +1,3 @@
-import App from "./AppContainer";
+import App from "./container/App";
 
 export { App };

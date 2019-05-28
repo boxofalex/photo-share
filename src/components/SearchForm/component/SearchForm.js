@@ -20,9 +20,10 @@ class SearchForm extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    if (this.props.changedSearchTerm !== prevProps.changedSearchTerm) {
-      if (this.props.changedSearchTerm) {
-        this.updateLocalSearchTerm(this.props.changedSearchTerm);
+    const { changedSearchTerm } = this.props;
+    if (changedSearchTerm !== prevProps.changedSearchTerm) {
+      if (changedSearchTerm) {
+        this.updateLocalSearchTerm(changedSearchTerm);
       } else {
         this.updateLocalSearchTerm("");
       }
@@ -68,5 +69,14 @@ class SearchForm extends Component {
     );
   }
 }
+
+SearchForm.propTypes = {
+  changedSearchTerm: PropTypes.func.isRequired,
+  changedSearchTerm: PropTypes.any,
+  onClickAction: PropTypes.func.isRequired,
+  muiClassesForButton: PropTypes.shape({}),
+  formStyle: PropTypes.any,
+  inputStyle: PropTypes.any,
+};
 
 export default SearchForm;

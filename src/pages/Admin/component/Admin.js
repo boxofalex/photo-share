@@ -46,9 +46,10 @@ class Admin extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    if (this.props.selectedUser !== prevProps.selectedUser) {
-      if (this.props.selectedUser) {
-        const monthData = this.calculateUploadsPerMonth(this.props.selectedUser.photos);
+    const { selectedUser } = this.props;
+    if (selectedUser !== prevProps.selectedUser) {
+      if (selectedUser) {
+        const monthData = this.calculateUploadsPerMonth(selectedUser.photos);
         this.configActivityChartData(monthData);
       }
     }
@@ -171,5 +172,12 @@ class Admin extends Component {
     );
   }
 }
+
+Admin.propTypes = {
+  fetchUsers: PropTypes.func.isRequired,
+  fetchUser: PropTypes.func.isRequired,
+  listOfUsers: PropTypes.array.isRequired,
+  selectedUser: PropTypes.any,
+};
 
 export default Admin;

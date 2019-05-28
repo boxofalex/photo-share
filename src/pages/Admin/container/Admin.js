@@ -1,14 +1,7 @@
-import React, { Component } from "react";
 import { connect } from "react-redux";
 import { getListOfUsers, getSelectedUser } from "store/user/selectors";
 import { fetchUsers, selectedUser, fetchUser } from "store/user/actions";
-import Admin from "./component/Admin";
-
-class AdminContainer extends Component {
-  render() {
-    return <Admin {...this.props} />;
-  }
-}
+import Admin from "../component/Admin";
 
 const mapStateToProps = (state, ownProps) => {
   return {
@@ -20,4 +13,4 @@ const mapStateToProps = (state, ownProps) => {
 export default connect(
   mapStateToProps,
   { fetchUsers, selectedUser, fetchUser },
-)(AdminContainer);
+)(Admin);

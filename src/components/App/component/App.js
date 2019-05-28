@@ -1,8 +1,8 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
 import { MuiThemeProvider } from "@material-ui/core/styles";
 import theme from "material/theme.config";
-import styles from "./App.module.scss";
 import { Header } from "components/Header";
 import { SignInForm } from "components/SignInForm";
 import { RegisterForm } from "components/RegisterForm";
@@ -12,6 +12,8 @@ import { Admin } from "pages/Admin";
 import { Search } from "pages/Search";
 import { NotFound } from "pages/NotFound";
 import { AddPhotoForm } from "components/AddPhotoForm";
+
+import styles from "./App.module.scss";
 
 class App extends Component {
   logInUser = (login, password) => {
@@ -87,5 +89,23 @@ class App extends Component {
     );
   }
 }
+
+App.propTypes = {
+  loginUser: PropTypes.func.isRequired,
+  registerUser: PropTypes.func.isRequired,
+  logoutUser: PropTypes.func.isRequired,
+  activeUserId: PropTypes.any,
+  isRegisterFormOpen: PropTypes.bool.isRequired,
+  isSignInFormOpen: PropTypes.bool.isRequired,
+  isAddImageFormOpen: PropTypes.bool.isRequired,
+  openSignInForm: PropTypes.func.isRequired,
+  closeSignInForm: PropTypes.func.isRequired,
+  openRegisterForm: PropTypes.func.isRequired,
+  closeRegisterForm: PropTypes.func.isRequired,
+  openAddImageForm: PropTypes.func.isRequired,
+  closeAddImageForm: PropTypes.func.isRequired,
+  uploadPhoto: PropTypes.func.isRequired,
+  availableCategories: PropTypes.array.isRequired,
+};
 
 export default App;

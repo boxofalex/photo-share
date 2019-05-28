@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
 import Dialog from "@material-ui/core/Dialog";
@@ -80,5 +81,11 @@ class RegisterForm extends Component {
     );
   }
 }
+
+RegisterForm.propTypes = {
+  registerUser: PropTypes.func.isRequired,
+  isOpen: PropTypes.bool.isRequired,
+  toggleRegisterForm: PropTypes.func.isRequired,
+};
 
 export default RegisterForm;

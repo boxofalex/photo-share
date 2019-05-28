@@ -13,7 +13,8 @@ class Search extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    if (this.props.location !== prevProps.location) {
+    const { location } = this.props;
+    if (location !== prevProps.location) {
       this.searchTerm();
     }
   }
@@ -24,16 +25,17 @@ class Search extends Component {
   };
 
   searchTerm() {
-    const params = queryString.parse(this.props.location.search);
+    const { location } = this.props;
+    const params = queryString.parse(location.search);
     if (params && params.term) {
-      const term = params.term;
+      const { term } = params;
       const { searchPhoto } = this.props;
       searchPhoto(term);
     }
   }
 
   render() {
-    const { muiClassesForButton, result, searchTerm } = this.props;
+    const { classes, result, searchTerm } = this.props;
 
     return (
       <Fragment>
@@ -41,7 +43,7 @@ class Search extends Component {
           <SearchForm
             formStyle={styles.searchForm}
             inputStyle={styles.searchForm__input}
-            muiClassesForButton={muiClassesForButton}
+            muiClassesForButton={classes}
             onClickAction={this.handleSearch}
             changedSearchTerm={searchTerm}
           />
@@ -59,5 +61,14 @@ class Search extends Component {
     );
   }
 }
+
+Search.propTypes = {
+  location: PropTypes.any,
+  history: PropTypes.shape({}),
+  searchPhoto: PropTypes.func.isRequired,
+  classes: PropTypes.any,
+  result: PropTypes.array.isRequired,
+  searchTerm: PropTypes.any,
+};
 
 export default Search;

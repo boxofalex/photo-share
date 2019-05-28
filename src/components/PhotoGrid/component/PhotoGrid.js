@@ -15,4 +15,8 @@ const PhotoGrid = ({ images }) => {
   );
 };
 
+PhotoGrid.propTypes = {
+  images: PropTypes.array.isRequired,
+};
+
 export default PhotoGrid;

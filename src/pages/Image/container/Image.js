@@ -1,14 +1,7 @@
-import React, { Component } from "react";
 import { connect } from "react-redux";
 import { getActivePhoto } from "store/photos/selectors";
 import { selectPhoto, updatePhotoRating } from "store/photos/actions";
-import Image from "./component/Image";
-
-class ImageContainer extends Component {
-  render() {
-    return <Image {...this.props} />;
-  }
-}
+import Image from "../component/Image";
 
 const mapStateToProps = (state, ownProps) => {
   return {
@@ -19,4 +12,4 @@ const mapStateToProps = (state, ownProps) => {
 export default connect(
   mapStateToProps,
   { selectPhoto, updatePhotoRating },
-)(ImageContainer);
+)(Image);

@@ -1,4 +1,3 @@
-import React, { Component } from "react";
 import { connect } from "react-redux";
 import { getActiveUserId } from "store/user/selectors";
 import { loginUser, registerUser, logoutUser } from "store/user/actions";
@@ -18,13 +17,7 @@ import {
 import { photosActions, photosSelectors } from "store/photos";
 import { getAvailableCategories } from "store/photos/selectors";
 import { uploadPhoto } from "store/photos/actions";
-import App from "./component/App";
-
-class AppContainer extends Component {
-  render() {
-    return <App {...this.props} />;
-  }
-}
+import App from "../component/App";
 
 const mapStateToProps = (state, ownProps) => {
   return {
@@ -50,4 +43,4 @@ export default connect(
     closeAddImageForm,
     uploadPhoto,
   },
-)(AppContainer);
+)(App);

@@ -1,4 +1,5 @@
 import React, { Component, Fragment } from "react";
+import PropTypes from "prop-types";
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
 import Dialog from "@material-ui/core/Dialog";
@@ -111,14 +112,6 @@ class AddPhotoForm extends Component {
     });
   };
 
-  handlePlaceChanged() {
-    const place = this.autocomplete.getPlace();
-    const city = place.formatted_address;
-    const lat = place.geometry.location.lat();
-    const lng = place.geometry.location.lng();
-    this.setState({ choosenPlaceLocation: { lat, lng }, location: city });
-  }
-
   renderAutoComplete = () => {
     const { google } = this.props;
     this.autocomplete = new google.maps.places.Autocomplete(this.autocompleteInput.current, {
@@ -132,6 +125,14 @@ class AddPhotoForm extends Component {
     closeForm();
     this.setState(initState);
   };
+
+  handlePlaceChanged() {
+    const place = this.autocomplete.getPlace();
+    const city = place.formatted_address;
+    const lat = place.geometry.location.lat();
+    const lng = place.geometry.location.lng();
+    this.setState({ choosenPlaceLocation: { lat, lng }, location: city });
+  }
 
   render() {
     const { isOpen, availableCategories, google, classes } = this.props;
@@ -202,14 +203,14 @@ class AddPhotoForm extends Component {
                   name="location"
                   type="text"
                   ref={this.autocompleteInput}
-                  disabled={isLocationToAdd ? false : true}
+                  disabled={!isLocationToAdd}
                 />
                 <div className={styles.maps}>
                   <Map
                     google={google}
                     zoom={10}
                     style={mapStyles}
-                    center={choosenPlaceLocation ? choosenPlaceLocation : currentCenterLocation}
+                    center={choosenPlaceLocation || currentCenterLocation}
                     initialCenter={currentCenterLocation}>
                     {choosenPlaceLocation ? <Marker position={choosenPlaceLocation} /> : ""}
                   </Map>
@@ -230,6 +231,15 @@ class AddPhotoForm extends Component {
     );
   }
 }
+
+AddPhotoForm.propTypes = {
+  uploadPhoto: PropTypes.func.isRequired,
+  google: PropTypes.shape({}).isRequired,
+  closeForm: PropTypes.func.isRequired,
+  isOpen: PropTypes.bool.isRequired,
+  availableCategories: PropTypes.array.isRequired,
+  classes: PropTypes.shape({}).isRequired,
+};
 
 export default withStyles(dialogStyles)(
   GoogleApiWrapper({

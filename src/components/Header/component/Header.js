@@ -15,7 +15,7 @@ const Header = ({ classes, isUserAuthorised, toggleSignForm, openAddPhotoForm, l
       <AppBar position="static">
         <Toolbar classes={{ root: classes.rootForToolbar }}>
           <div className={styles.header__content}>
-            <Link to={"/"}>
+            <Link to="/">
               <div className={styles.header__content__left}>
                 <Typography component="h2" variant="h2">
                   PhotoShare
@@ -26,7 +26,7 @@ const Header = ({ classes, isUserAuthorised, toggleSignForm, openAddPhotoForm, l
             <div className={styles.header__content__right}>
               {isUserAuthorised ? (
                 <Fragment>
-                  <Link to={"/admin"}>
+                  <Link to="/admin">
                     <Button
                       className={styles.myAccountButton}
                       variant="contained"
@@ -63,6 +63,14 @@ const Header = ({ classes, isUserAuthorised, toggleSignForm, openAddPhotoForm, l
       </AppBar>
     </div>
   );
+};
+
+Header.propTypes = {
+  classes: PropTypes.shape({}),
+  isUserAuthorised: PropTypes.any,
+  toggleSignForm: PropTypes.func.isRequired,
+  openAddPhotoForm: PropTypes.func.isRequired,
+  logOutUser: PropTypes.func.isRequired,
 };
 
 export default Header;

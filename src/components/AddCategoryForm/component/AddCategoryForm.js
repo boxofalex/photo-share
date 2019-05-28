@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
 import Dialog from "@material-ui/core/Dialog";
@@ -27,7 +28,7 @@ class AddCategoryForm extends Component {
   };
 
   render() {
-    const { isOpen, closeForm, addCategory } = this.props;
+    const { isOpen, closeForm } = this.props;
     return (
       <div className={styles.container}>
         <Dialog open={isOpen}>
@@ -51,15 +52,11 @@ class AddCategoryForm extends Component {
                 type="submit"
                 variant="contained"
                 color="secondary"
-                disableRipple={true}
+                disableRipple
                 onSubmit={this.handleSubmit}>
                 Добавить
               </Button>
-              <Button
-                variant="contained"
-                color="secondary"
-                disableRipple={true}
-                onClick={closeForm}>
+              <Button variant="contained" color="secondary" disableRipple onClick={closeForm}>
                 Отмена
               </Button>
             </DialogActions>
@@ -69,5 +66,11 @@ class AddCategoryForm extends Component {
     );
   }
 }
+
+AddCategoryForm.propTypes = {
+  addCategory: PropTypes.func.isRequired,
+  closeForm: PropTypes.func.isRequired,
+  isOpen: PropTypes.bool.isRequired,
+};
 
 export default AddCategoryForm;

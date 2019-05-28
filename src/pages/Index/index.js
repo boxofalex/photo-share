@@ -1,1 +1,3 @@
-export { default as Index } from "./IndexContainer";
+import Index from "./container/Index";
+
+export { Index };

@@ -1,8 +1,7 @@
-import React, { Component } from "react";
 import { withStyles } from "@material-ui/core/styles";
 import { connect } from "react-redux";
 
-import Header from "./component/Header";
+import Header from "../component/Header";
 
 const stylesForMI = {
   rootForToolbar: {
@@ -17,10 +16,4 @@ const stylesForMI = {
   },
 };
 
-class HeaderContainer extends Component {
-  render() {
-    return <Header {...this.props} />;
-  }
-}
-
-export default withStyles(stylesForMI)(connect()(HeaderContainer));
+export default withStyles(stylesForMI)(Header);

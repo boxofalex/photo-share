@@ -44,6 +44,7 @@ class Image extends Component {
   render() {
     const { activePhoto } = this.props;
     const { liked } = this.state;
+
     return (
       <div className={styles.container}>
         {activePhoto && (
@@ -84,5 +85,11 @@ class Image extends Component {
     );
   }
 }
+
+Image.propTypes = {
+  selectPhoto: PropTypes.func.isRequired,
+  updatePhotoRating: PropTypes.func.isRequired,
+  activePhoto: PropTypes.any,
+};
 
 export default Image;

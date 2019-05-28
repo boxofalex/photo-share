@@ -1,1 +1,3 @@
-export { default as Admin } from "./AdminContainer";
+import Admin from "./container/Admin";
+
+export { Admin };

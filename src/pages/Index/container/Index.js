@@ -1,4 +1,3 @@
-import React, { Component } from "react";
 import { connect } from "react-redux";
 import { withStyles } from "@material-ui/core/styles";
 import {
@@ -9,7 +8,7 @@ import {
 import { addCategory, fetchCategory, fetchCategories } from "store/photos/actions";
 import { openAddCategoryForm, closeAddCategoryForm } from "store/ui/actions";
 import { getIsAddCategoryFormOpen } from "store/ui/selectors";
-import Index from "./component/Index";
+import Index from "../component/Index";
 
 const stylesForMI = {
   rootForSearchLogo: {
@@ -31,13 +30,6 @@ const stylesForMI = {
   },
 };
 
-class IndexContainer extends Component {
-  render() {
-    const { classes } = this.props;
-    return <Index muiClassesForButton={classes} {...this.props} />;
-  }
-}
-
 const mapStateToProps = (state, ownProps) => {
   return {
     listOfCategories: getAvailableCategories(state.photos),
@@ -51,5 +43,5 @@ export default withStyles(stylesForMI)(
   connect(
     mapStateToProps,
     { addCategory, fetchCategory, fetchCategories, openAddCategoryForm, closeAddCategoryForm },
-  )(IndexContainer),
+  )(Index),
 );

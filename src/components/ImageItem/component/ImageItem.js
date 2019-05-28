@@ -18,16 +18,21 @@ class ImageItem extends Component {
   setSpans = () => {
     if (this.imageRef.current) {
       const height = this.imageRef.current.clientHeight;
-      const spans = Math.ceil(height / 10) + 1;
+      const spans = this.calculateHeightSpans(height);
       this.setState({ spans });
     }
-    return;
+  };
+
+  calculateHeightSpans = height => {
+    return Math.ceil(height / 10) + 1;
   };
 
   render() {
-    const { url, _id, name } = this.props.image;
+    const { spans } = this.state;
+    const { image } = this.props;
+    const { url, _id, name } = image;
     return (
-      <div style={{ gridRowEnd: `span ${this.state.spans}` }}>
+      <div style={{ gridRowEnd: `span ${spans}` }}>
         <Link to={`/photo/${_id}`}>
           <img ref={this.imageRef} src={url} alt={name} />
         </Link>
@@ -35,5 +40,9 @@ class ImageItem extends Component {
     );
   }
 }
+
+ImageItem.propTypes = {
+  image: PropTypes.shape({}),
+};
 
 export default ImageItem;

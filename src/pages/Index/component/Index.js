@@ -6,7 +6,6 @@ import { SearchForm } from "components/SearchForm";
 import { PhotoGrid } from "components/PhotoGrid";
 import { CategoryList } from "components/CategoryList";
 import { AddCategoryForm } from "components/AddCategoryForm";
-import { AddPhotoForm } from "components/AddPhotoForm";
 import Button from "@material-ui/core/Button";
 import banner from "assets/images/banner.jpg";
 
@@ -32,7 +31,7 @@ class Index extends Component {
 
   render() {
     const {
-      muiClassesForButton,
+      classes,
       listOfCategories,
       activeCategory,
       isAddCategoryFormOpen,
@@ -53,7 +52,7 @@ class Index extends Component {
             <SearchForm
               formStyle={styles.searchForm}
               inputStyle={styles.searchForm__input}
-              muiClassesForButton={muiClassesForButton}
+              muiClassesForButton={classes}
               onClickAction={this.handleSearch}
             />
           </div>
@@ -83,5 +82,19 @@ class Index extends Component {
     );
   }
 }
+
+Index.propTypes = {
+  fetchCategories: PropTypes.func.isRequired,
+  fetchCategory: PropTypes.func.isRequired,
+  history: PropTypes.shape({}),
+  classes: PropTypes.any,
+  listOfCategories: PropTypes.array.isRequired,
+  activeCategory: PropTypes.any,
+  isAddCategoryFormOpen: PropTypes.bool.isRequired,
+  photos: PropTypes.array.isRequired,
+  openAddCategoryForm: PropTypes.func.isRequired,
+  closeAddCategoryForm: PropTypes.func.isRequired,
+  addCategory: PropTypes.func.isRequired,
+};
 
 export default Index;

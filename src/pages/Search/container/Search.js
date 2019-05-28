@@ -1,9 +1,8 @@
-import React, { Component } from "react";
 import { connect } from "react-redux";
 import { getSearchTerm, getSearchResult } from "store/search/selectors";
 import { searchPhoto } from "store/search/actions";
 import { withStyles } from "@material-ui/core/styles";
-import Search from "./component/Search";
+import Search from "../component/Search";
 
 const stylesForMI = {
   rootForSearchLogo: {
@@ -26,13 +25,6 @@ const stylesForMI = {
   },
 };
 
-class SearchContainer extends Component {
-  render() {
-    const { classes } = this.props;
-    return <Search muiClassesForButton={classes} {...this.props} />;
-  }
-}
-
 const mapStateToProps = (state, ownProps) => {
   return {
     searchTerm: getSearchTerm(state.search),
@@ -44,5 +36,5 @@ export default withStyles(stylesForMI)(
   connect(
     mapStateToProps,
     { searchPhoto },
-  )(SearchContainer),
+  )(Search),
 );

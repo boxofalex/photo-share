@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
 import Dialog from "@material-ui/core/Dialog";
@@ -75,14 +76,10 @@ class SignInForm extends Component {
               </span>
             </DialogContent>
             <DialogActions>
-              <Button type="submit" variant="contained" color="secondary" disableRipple={true}>
+              <Button type="submit" variant="contained" color="secondary" disableRipple>
                 Войти
               </Button>
-              <Button
-                variant="contained"
-                color="secondary"
-                disableRipple={true}
-                onClick={toggleSignForm}>
+              <Button variant="contained" color="secondary" disableRipple onClick={toggleSignForm}>
                 Отмена
               </Button>
             </DialogActions>
@@ -92,5 +89,12 @@ class SignInForm extends Component {
     );
   }
 }
+
+SignInForm.propTypes = {
+  toggleSignForm: PropTypes.func.isRequired,
+  toggleRegisterForm: PropTypes.func.isRequired,
+  logInUser: PropTypes.func.isRequired,
+  isOpen: PropTypes.bool.isRequired,
+};
 
 export default SignInForm;

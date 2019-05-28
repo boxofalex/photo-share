@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { searchActions, searchSelectors } from "store/search";
+import { getSearchTerm, getSearchResult } from "store/search/selectors";
+import { searchPhoto } from "store/search/actions";
 import { withStyles } from "@material-ui/core/styles";
 import Search from "./component/Search";
 
@@ -34,14 +35,14 @@ class SearchContainer extends Component {
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    searchTerm: searchSelectors.getSearchTerm(state.search),
-    result: searchSelectors.getSearchResult(state.search),
+    searchTerm: getSearchTerm(state.search),
+    result: getSearchResult(state.search),
   };
 };
 
 export default withStyles(stylesForMI)(
   connect(
     mapStateToProps,
-    { ...searchActions },
+    { searchPhoto },
   )(SearchContainer),
 );

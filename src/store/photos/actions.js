@@ -1,3 +1,5 @@
+import { closeAddCategoryForm, closeAddImageForm } from "store/ui/actions";
+
 import {
   ADD_CATEGORY,
   ADD_CATEGORY_SUCCESSFULL,
@@ -21,11 +23,8 @@ import {
   UPDATE_PHOTO_RATING_SUCCESSFULL,
   UPDATE_PHOTO_RATING_FAIL,
 } from "./constants";
-import FormData from "form-data";
 
-import { uiActions } from "store/ui";
-
-const fetchCategories = () => async (dispatch, getState, api) => {
+export const fetchCategories = () => async (dispatch, getState, api) => {
   dispatch({ type: FETCH_CATEGORIES });
   try {
     const response = await api.get(`/categories`).then(res => res.data);
@@ -35,19 +34,19 @@ const fetchCategories = () => async (dispatch, getState, api) => {
   }
 };
 
-const addCategory = name => async (dispatch, getState, api) => {
+export const addCategory = name => async (dispatch, getState, api) => {
   dispatch({ type: ADD_CATEGORY });
   try {
     const response = await api.post(`/categories`, { name });
     dispatch({ type: ADD_CATEGORY_SUCCESSFULL });
     dispatch(fetchCategories());
-    dispatch(uiActions.closeAddCategoryForm());
+    dispatch(closeAddCategoryForm());
   } catch (err) {
     dispatch({ type: ADD_CATEGORY_FAIL });
   }
 };
 
-const fetchAllPhotos = () => async (dispatch, getState, api) => {
+export const fetchAllPhotos = () => async (dispatch, getState, api) => {
   dispatch({ type: FETCH_ALL_PHOTOS });
   try {
     const response = await api.get(`/photos`).then(res => res.data);
@@ -57,7 +56,7 @@ const fetchAllPhotos = () => async (dispatch, getState, api) => {
   }
 };
 
-const fetchCategory = id => async (dispatch, getState, api) => {
+export const fetchCategory = id => async (dispatch, getState, api) => {
   if (id === 0) {
     dispatch(fetchAllPhotos());
     dispatch({ type: FETCH_CATEGORY_SUCCESSFULL, payload: { _id: 0, name: "Все", photos: [] } });
@@ -72,7 +71,7 @@ const fetchCategory = id => async (dispatch, getState, api) => {
   }
 };
 
-const uploadPhoto = (name, category, location, image) => async (dispatch, getState, api) => {
+export const uploadPhoto = (name, category, location, image) => async (dispatch, getState, api) => {
   const state = getState();
   dispatch({ type: UPLOAD_PHOTO });
   try {
@@ -84,7 +83,7 @@ const uploadPhoto = (name, category, location, image) => async (dispatch, getSta
     data.append("author", state.user.activeUserId);
     const response = await api.post(`/photos`, data);
     if (response.status === 200) {
-      dispatch(uiActions.closeAddImageForm());
+      dispatch(closeAddImageForm());
       dispatch({ type: UPLOAD_PHOTO_SUCCESSFULL });
       dispatch(fetchCategory(state.photos.activeCategory._id));
     }
@@ -93,7 +92,7 @@ const uploadPhoto = (name, category, location, image) => async (dispatch, getSta
   }
 };
 
-const selectPhoto = id => async (dispatch, getState, api) => {
+export const selectPhoto = id => async (dispatch, getState, api) => {
   dispatch({ type: SELECT_PHOTO });
   try {
     const response = await api.get(`/photos`).then(res => res.data.data);
@@ -108,7 +107,7 @@ const selectPhoto = id => async (dispatch, getState, api) => {
   }
 };
 
-const updatePhotoRating = (value, photoId) => async (dispatch, getState, api) => {
+export const updatePhotoRating = (value, photoId) => async (dispatch, getState, api) => {
   dispatch({ type: UPDATE_PHOTO_RATING });
   try {
     const response = await api.post(`/photos/update/${photoId}`, { updateValue: value });
@@ -119,14 +118,4 @@ const updatePhotoRating = (value, photoId) => async (dispatch, getState, api) =>
   } catch (err) {
     dispatch({ type: UPDATE_PHOTO_RATING_FAIL });
   }
-};
-
-export {
-  fetchCategories,
-  addCategory,
-  fetchCategory,
-  fetchAllPhotos,
-  uploadPhoto,
-  selectPhoto,
-  updatePhotoRating,
 };

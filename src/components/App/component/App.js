@@ -31,8 +31,10 @@ class App extends Component {
 
   render() {
     const {
-      user,
-      ui,
+      activeUserId,
+      isRegisterFormOpen,
+      isSignInFormOpen,
+      isAddImageFormOpen,
       openSignInForm,
       closeSignInForm,
       openRegisterForm,
@@ -47,7 +49,7 @@ class App extends Component {
       <MuiThemeProvider theme={theme}>
         <BrowserRouter>
           <Header
-            isUserAuthorised={user && user.activeUserId}
+            isUserAuthorised={activeUserId}
             logInUser={this.logInUser}
             toggleSignForm={openSignInForm}
             openAddPhotoForm={openAddImageForm}
@@ -65,18 +67,18 @@ class App extends Component {
           </div>
         </BrowserRouter>
         <SignInForm
-          isOpen={ui.isSignInFormOpen}
+          isOpen={isSignInFormOpen}
           toggleSignForm={closeSignInForm}
           toggleRegisterForm={openRegisterForm}
           logInUser={this.logInUser}
         />
         <RegisterForm
-          isOpen={ui.isRegisterFormOpen}
+          isOpen={isRegisterFormOpen}
           toggleRegisterForm={closeRegisterForm}
           registerUser={this.registerUser}
         />
         <AddPhotoForm
-          isOpen={ui.isAddImageFormOpen}
+          isOpen={isAddImageFormOpen}
           closeForm={closeAddImageForm}
           uploadPhoto={uploadPhoto}
           availableCategories={availableCategories}

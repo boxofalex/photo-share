@@ -1,4 +1,2 @@
-const getSearchTerm = state => state.searchTerm;
-const getSearchResult = state => state.result;
-
-export { getSearchTerm, getSearchResult };
+export const getSearchTerm = state => state.searchTerm;
+export const getSearchResult = state => state.result;

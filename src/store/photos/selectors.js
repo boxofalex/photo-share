@@ -1,13 +1,4 @@
-const getPhotosState = state => state.photos;
-const getAvailableCategories = state => state.photos.listOfAvailableCategories;
-const getActiveCategory = state => state.photos.activeCategory;
-const getActivePhoto = state => state.photos.activePhoto;
-const getPhotosToDispaly = state => state.photos.photos;
-
-export {
-  getPhotosState,
-  getAvailableCategories,
-  getActiveCategory,
-  getPhotosToDispaly,
-  getActivePhoto,
-};
+export const getAvailableCategories = state => state.listOfAvailableCategories;
+export const getActiveCategory = state => state.activeCategory;
+export const getActivePhoto = state => state.activePhoto;
+export const getPhotosToDispaly = state => state.photos;

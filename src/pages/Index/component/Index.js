@@ -35,14 +35,12 @@ class Index extends Component {
       muiClassesForButton,
       listOfCategories,
       activeCategory,
-      ui,
+      isAddCategoryFormOpen,
       photos,
       openAddCategoryForm,
       closeAddCategoryForm,
       addCategory,
       fetchCategory,
-      closeAddImageForm,
-      uploadPhoto,
     } = this.props;
 
     return (
@@ -77,7 +75,7 @@ class Index extends Component {
         </div>
         <PhotoGrid images={photos} />
         <AddCategoryForm
-          isOpen={ui && ui.isAddCategoryFormOpen}
+          isOpen={isAddCategoryFormOpen}
           closeForm={closeAddCategoryForm}
           addCategory={addCategory}
         />

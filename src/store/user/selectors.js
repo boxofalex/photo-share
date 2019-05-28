@@ -1,5 +1,4 @@
-const getUserState = state => state.user;
-const getListOfUsers = state => state.listOfUsers;
-const getSelectedUser = state => state.selectedUser;
-
-export { getUserState, getListOfUsers, getSelectedUser };
+export const getListOfUsers = state => state.listOfUsers;
+export const getSelectedUser = state => state.selectedUser;
+export const getActiveUserId = state => state.activeUserId;
+export const getActiveUserDetails = state => state.activeUserDetails;

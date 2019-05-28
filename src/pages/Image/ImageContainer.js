@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { photosActions, photosSelectors } from "store/photos";
+import { getActivePhoto } from "store/photos/selectors";
+import { selectPhoto, updatePhotoRating } from "store/photos/actions";
 import Image from "./component/Image";
 
 class ImageContainer extends Component {
@@ -11,11 +12,11 @@ class ImageContainer extends Component {
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    activePhoto: photosSelectors.getActivePhoto(state),
+    activePhoto: getActivePhoto(state.photos),
   };
 };
 
 export default connect(
   mapStateToProps,
-  { ...photosActions },
+  { selectPhoto, updatePhotoRating },
 )(ImageContainer);

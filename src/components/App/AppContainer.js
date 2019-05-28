@@ -1,8 +1,23 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { userActions, userSelectors } from "store/user";
-import { uiActions, uiSelectors } from "store/ui";
+import { getActiveUserId } from "store/user/selectors";
+import { loginUser, registerUser, logoutUser } from "store/user/actions";
+import {
+  getIsRegisterFormOpen,
+  getIsAddImageFormOpen,
+  getIsSignInFormOpen,
+} from "store/ui/selectors";
+import {
+  openSignInForm,
+  closeSignInForm,
+  openRegisterForm,
+  closeRegisterForm,
+  openAddImageForm,
+  closeAddImageForm,
+} from "store/ui/actions";
 import { photosActions, photosSelectors } from "store/photos";
+import { getAvailableCategories } from "store/photos/selectors";
+import { uploadPhoto } from "store/photos/actions";
 import App from "./component/App";
 
 class AppContainer extends Component {
@@ -13,13 +28,26 @@ class AppContainer extends Component {
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    user: userSelectors.getUserState(state),
-    ui: uiSelectors.getUiState(state),
-    availableCategories: photosSelectors.getAvailableCategories(state),
+    activeUserId: getActiveUserId(state.user),
+    isRegisterFormOpen: getIsRegisterFormOpen(state.ui),
+    isSignInFormOpen: getIsSignInFormOpen(state.ui),
+    isAddImageFormOpen: getIsAddImageFormOpen(state.ui),
+    availableCategories: getAvailableCategories(state.photos),
   };
 };
 
 export default connect(
   mapStateToProps,
-  { ...userActions, ...uiActions, ...photosActions },
+  {
+    loginUser,
+    registerUser,
+    logoutUser,
+    openSignInForm,
+    closeSignInForm,
+    openRegisterForm,
+    closeRegisterForm,
+    openAddImageForm,
+    closeAddImageForm,
+    uploadPhoto,
+  },
 )(AppContainer);

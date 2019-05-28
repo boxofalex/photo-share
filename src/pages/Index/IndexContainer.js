@@ -1,8 +1,14 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { withStyles } from "@material-ui/core/styles";
-import { photosActions, photosSelectors } from "store/photos";
-import { uiActions, uiSelectors } from "store/ui";
+import {
+  getAvailableCategories,
+  getActiveCategory,
+  getPhotosToDispaly,
+} from "store/photos/selectors";
+import { addCategory, fetchCategory, fetchCategories } from "store/photos/actions";
+import { openAddCategoryForm, closeAddCategoryForm } from "store/ui/actions";
+import { getIsAddCategoryFormOpen } from "store/ui/selectors";
 import Index from "./component/Index";
 
 const stylesForMI = {
@@ -34,16 +40,16 @@ class IndexContainer extends Component {
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    listOfCategories: photosSelectors.getAvailableCategories(state),
-    activeCategory: photosSelectors.getActiveCategory(state),
-    photos: photosSelectors.getPhotosToDispaly(state),
-    ui: uiSelectors.getUiState(state),
+    listOfCategories: getAvailableCategories(state.photos),
+    activeCategory: getActiveCategory(state.photos),
+    photos: getPhotosToDispaly(state.photos),
+    isAddCategoryFormOpen: getIsAddCategoryFormOpen(state.ui),
   };
 };
 
 export default withStyles(stylesForMI)(
   connect(
     mapStateToProps,
-    { ...photosActions, ...uiActions },
+    { addCategory, fetchCategory, fetchCategories, openAddCategoryForm, closeAddCategoryForm },
   )(IndexContainer),
 );

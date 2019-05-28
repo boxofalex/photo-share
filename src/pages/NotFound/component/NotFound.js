@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import styles from "./NotFound.module.scss";
 
 const NotFound = () => {
-  return <div>NotFoundPage</div>;
+  return <div>Page not found</div>;
 };
 
 export default NotFound;

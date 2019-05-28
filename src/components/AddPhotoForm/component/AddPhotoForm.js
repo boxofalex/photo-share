@@ -36,20 +36,22 @@ const dialogStyles = {
   },
 };
 
+const initState = {
+  name: "",
+  category: "",
+  location: "Не указано",
+  image: null,
+  isLocationToAdd: false,
+  isLocationChangable: false,
+  currentCenterLocation: {
+    lat: 51.509865,
+    lng: -0.118092,
+  },
+  choosenPlaceLocation: null,
+};
+
 class AddPhotoForm extends Component {
-  state = {
-    name: "",
-    category: "",
-    location: "Не указано",
-    image: null,
-    isLocationToAdd: false,
-    isLocationChangable: false,
-    currentCenterLocation: {
-      lat: 51.509865,
-      lng: -0.118092,
-    },
-    choosenPlaceLocation: null,
-  };
+  state = initState;
 
   constructor(props) {
     super(props);
@@ -91,6 +93,7 @@ class AddPhotoForm extends Component {
     const { uploadPhoto } = this.props;
     if (name && category && image && location) {
       uploadPhoto(name, category, location, image);
+      this.setState(initState);
     }
   };
 
@@ -124,8 +127,14 @@ class AddPhotoForm extends Component {
     this.event = this.autocomplete.addListener("place_changed", this.handlePlaceChanged);
   };
 
+  closeForm = () => {
+    const { closeForm } = this.props;
+    closeForm();
+    this.setState(initState);
+  };
+
   render() {
-    const { isOpen, closeForm, availableCategories, google, classes } = this.props;
+    const { isOpen, availableCategories, google, classes } = this.props;
     const {
       category,
       name,
@@ -211,7 +220,7 @@ class AddPhotoForm extends Component {
               <Button type="submit" variant="contained" color="secondary" disableRipple>
                 Загрузить
               </Button>
-              <Button variant="contained" color="secondary" disableRipple onClick={closeForm}>
+              <Button variant="contained" color="secondary" disableRipple onClick={this.closeForm}>
                 Отмена
               </Button>
             </DialogActions>

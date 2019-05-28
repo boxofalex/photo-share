@@ -1,0 +1,43 @@
+.container {
+  width: 450px;
+}
+
+.addPhotoForm {
+  &__name {
+  }
+
+  &__category {
+    & div {
+      width: 100%;
+    }
+  }
+
+  &__file {
+    margin: 10px 0;
+
+    & span {
+      display: inline-block;
+      margin: 0 20px 0 0;
+    }
+  }
+
+  &__maps {
+  }
+}
+
+.location_checkbox {
+  margin: 0 5px 0 0;
+}
+
+.location_input {
+  display: block;
+  width: 100%;
+  margin: 10px 0 0 0;
+}
+
+.maps {
+  margin: 10px 0 0 0;
+  position: relative;
+  height: 300px;
+  width: 450px;
+}

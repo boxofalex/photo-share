@@ -40,8 +40,7 @@ class App extends Component {
       openAddImageForm,
       closeAddImageForm,
       uploadPhoto,
-      closeAddCategoryForm,
-      addCategory,
+      availableCategories,
     } = this.props;
 
     return (
@@ -80,6 +79,7 @@ class App extends Component {
           isOpen={ui.isAddImageFormOpen}
           closeForm={closeAddImageForm}
           uploadPhoto={uploadPhoto}
+          availableCategories={availableCategories}
         />
       </MuiThemeProvider>
     );

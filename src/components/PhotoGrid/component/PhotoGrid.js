@@ -1,7 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { ImageItem } from "components/ImageItem";
-import { Link } from "react-router-dom";
 
 import styles from "./PhotoGrid.module.scss";
 
